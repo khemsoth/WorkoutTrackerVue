@@ -13,11 +13,13 @@ const dbName = process.env.dbName
 
 var db
 
-
 app.use(function(req, res, next) {
   req.db = db
   next()
 })
+
+app.use(bodyParser.json())
+
 
 
 MongoClient.connect(dbUrl, function(err, database) {
