@@ -22,6 +22,17 @@ app.post('/post/exercise', function(req, res) {
 
 // UPDATE ROUTES
 
+app.put('/update/exercise', function(req, res) {
+  req.db.collection('exercises').updateOne({
+    name: req.body.oldName
+  },
+  {
+    $set: { name: req.body.newName, type: req.body.newType },
+  }).then(function(docs) {
+    res.send(docs)
+  })
+})
+
 // DELETE ROUTES
 
 }
