@@ -2,7 +2,7 @@ module.exports = function(app) {
 
 // GET ROUTES
 
-app.get('/', function(req, res) {
+app.get('/get/exercises', function(req, res) {
   req.db.collection('exercises').find({}).toArray(function(err, docs) {
     if (err) throw err
     res.send(docs)
@@ -34,5 +34,13 @@ app.put('/update/exercise', function(req, res) {
 })
 
 // DELETE ROUTES
+
+app.delete('/delete/exercise/:name', function(req, res) {
+  req.db.collection('exercises').deleteOne({
+    name: req.params.name
+  }).then(function(docs) {
+    res.send(docs)
+  })
+})
 
 }
