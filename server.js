@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
+const router = express.Router()
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
+const { default: axios } = require('axios')
 const apiRoutes = './routes/apiRoutes'
 require('dotenv').config()
 
@@ -31,6 +33,8 @@ MongoClient.connect(dbUrl, function(err, database) {
 })
 
 require(apiRoutes)(app)
+
+//axios.get('/get/UpperBody').then(response => res.json(response.data))
 
 
 
